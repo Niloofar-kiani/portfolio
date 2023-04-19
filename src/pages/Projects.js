@@ -1,8 +1,7 @@
 import React from "react";
+
 const projects = () => {
-  return <div>projects
-    lorem100
-  </div>;
+  return <div>projects</div>;
 };
 
 export default projects;

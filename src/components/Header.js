@@ -1,25 +1,16 @@
 import * as React from "react";
-import {styled, useTheme} from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import {Link} from "react-router-dom";
-import useStyles from "../Styles";
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import behance from '../assets/behance.png';
+
+//Material UI
+import {styled, useTheme} from "@mui/material/styles";
+import MuiAppBar from "@mui/material/AppBar";
+import {Box, Drawer, Toolbar, List, ListItem, IconButton, Typography, CssBaseline,  ListItemButton, } from "@mui/material";
+import {Twitter, LinkedIn, DarkMode, LightMode, ChevronRight, ChevronLeft, Menu} from "@mui/icons-material";
+
+//assets
+import useStyles from "../assets/styles/styles";
+import behance from "../assets/images/behance.png";
+
 
 const drawerWidth = 240;
 
@@ -85,9 +76,9 @@ export default function PersistentDrawerRight() {
     <Box sx={{display: "flex"}}>
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
-        <Toolbar>
-          <LightModeIcon className={classes.themeIcons} /> /{" "}
-          <DarkModeIcon className={classes.themeIcons} />
+        <Toolbar className={classes.toolbar}>
+          <LightMode className={classes.themeIcons} /> /{" "}
+          <DarkMode className={classes.themeIcons} />
           <IconButton
             className={classes.iconBtn}
             color="inherit"
@@ -96,7 +87,7 @@ export default function PersistentDrawerRight() {
             onClick={handleDrawerOpen}
             sx={{...(open && {display: "none"})}}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -115,16 +106,16 @@ export default function PersistentDrawerRight() {
         anchor="right"
         open={open}
       >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <div className={classes.drawerItems}>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "rtl" ? (
+              <ChevronLeft />
+            ) : (
+              <ChevronRight />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <div className={classes.drawerItems}>
           <List>
             <ListItem key="Home" disablePadding>
               <ListItemButton>
@@ -143,23 +134,37 @@ export default function PersistentDrawerRight() {
               </ListItem>
             ))}
           </List>
-        <Box className={classes.drawerHeader}>
-          <Typography variant="h6">Connect:</Typography>
-          <Typography>info@niloofarkiani.com</Typography>
-          <Typography>
-          <Link to="tel:+37441757071" className={classes.phoneNum}>+374-41757071</Link>
-          </Typography>
- 
-          <IconButton href="https://www.behance.net/niloofarkiani" color="inherit">
-          <img src={behance} alt="icon description" className={classes.behanceIcon} />
-                  </IconButton>
-                  <IconButton href="#" color="inherit">
-                    <TwitterIcon />
-                  </IconButton>
-                  <IconButton href="https://www.linkedin.com/in/niloofar-kiani/" color="inherit">
-                    <LinkedInIcon />
-                  </IconButton>
-        </Box>
+          <Box className={classes.drawerHeader}>
+            <Typography variant="h6">Connect:</Typography>
+            <Typography>info@niloofarkiani.com</Typography>
+            <Typography>
+              <Link to="tel:+37441757071" className={classes.phoneNum}>
+                +374-41757071
+              </Link>
+            </Typography>
+
+            <IconButton
+              href="https://www.behance.net/niloofarkiani"
+              color="inherit"
+              className={classes.iconBtn}
+            >
+              <img
+                src={behance}
+                alt="behance"
+                className={classes.behanceIcon}
+              />
+            </IconButton>
+            <IconButton className={classes.iconBtn} href="#" color="inherit">
+              <Twitter/>
+            </IconButton>
+            <IconButton
+              className={classes.iconBtn}
+              href="https://www.linkedin.com/in/niloofar-kiani/"
+              color="inherit"
+            >
+              <LinkedIn/>
+            </IconButton>
+          </Box>
         </div>
       </Drawer>
     </Box>

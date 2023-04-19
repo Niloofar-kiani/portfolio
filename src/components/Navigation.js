@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link} from "react-router-dom"
-
-import {AppBar, Toolbar} from '@mui/material';
-import { createUseStyles } from 'react-jss';
+import { Link} from "react-router-dom";
 
 
 const Navigation = () => {
@@ -24,7 +21,6 @@ const Navigation = () => {
         </li>
       </ul>
     </nav>
-
     </>
   )
 }
