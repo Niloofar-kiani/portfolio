@@ -1,16 +1,33 @@
-import * as React from "react";
+import React,{useState} from "react";
 import {Link} from "react-router-dom";
 
 //Material UI
 import {styled, useTheme} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
-import {Box, Drawer, Toolbar, List, ListItem, IconButton, Typography, CssBaseline,  ListItemButton, } from "@mui/material";
-import {Twitter, LinkedIn, DarkMode, LightMode, ChevronRight, ChevronLeft, Menu} from "@mui/icons-material";
+import {
+  Box,
+  Drawer,
+  Toolbar,
+  List,
+  ListItem,
+  IconButton,
+  Typography,
+  CssBaseline,
+  ListItemButton,
+} from "@mui/material";
+import {
+  Twitter,
+  LinkedIn,
+  DarkMode,
+  LightMode,
+  ChevronRight,
+  ChevronLeft,
+} from "@mui/icons-material";
 
 //assets
 import useStyles from "../assets/styles/styles";
 import behance from "../assets/images/behance.png";
-
+import menu from "../assets/images/menu.svg";
 
 const drawerWidth = 240;
 
@@ -59,10 +76,11 @@ const DrawerHeader = styled("div")(({theme}) => ({
   justifyContent: "flex-start",
 }));
 
-export default function PersistentDrawerRight() {
+export default function Header({handleThemeChange, isDarkMode}) {
   const {classes} = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -77,17 +95,18 @@ export default function PersistentDrawerRight() {
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
         <Toolbar className={classes.toolbar}>
-          <LightMode className={classes.themeIcons} /> /{" "}
-          <DarkMode className={classes.themeIcons} />
+          <IconButton onClick={handleThemeChange}>
+            {isDarkMode? <LightMode className={classes.themeIcons} /> : <DarkMode className={classes.themeIcons} /> }
+          </IconButton>
           <IconButton
-            className={classes.iconBtn}
+            className={`${classes.iconBtn} ${classes.menuIconBtn}`}
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
             sx={{...(open && {display: "none"})}}
           >
-            <Menu />
+            <img src={menu} className={classes.menuIcon} alt="menu icon"/>
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -108,11 +127,7 @@ export default function PersistentDrawerRight() {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeft />
-            ) : (
-              <ChevronRight />
-            )}
+            {theme.direction === "rtl" ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
         <div className={classes.drawerItems}>
@@ -127,7 +142,7 @@ export default function PersistentDrawerRight() {
             {["Skills", "Projects", "Contact"].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
-                  <Link to={text} className={classes.listItem}>
+                  <Link to={text.toLocaleLowerCase()} className={classes.listItem}>
                     {text}
                   </Link>
                 </ListItemButton>
@@ -150,19 +165,19 @@ export default function PersistentDrawerRight() {
             >
               <img
                 src={behance}
-                alt="behance"
+                alt="behance icon"
                 className={classes.behanceIcon}
               />
             </IconButton>
             <IconButton className={classes.iconBtn} href="#" color="inherit">
-              <Twitter/>
+              <Twitter />
             </IconButton>
             <IconButton
               className={classes.iconBtn}
               href="https://www.linkedin.com/in/niloofar-kiani/"
               color="inherit"
             >
-              <LinkedIn/>
+              <LinkedIn />
             </IconButton>
           </Box>
         </div>
