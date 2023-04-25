@@ -10,11 +10,12 @@ import lampOff from "../assets/images/lamp-off.png";
 import lampOn from "../assets/images/lamp-on.png";
 import girlOff from "../assets/images/girl-off.png";
 import girlOn from "../assets/images/girl-on.png";
-import arrow from "../assets/images/arrow.svg";
+import arrowOff from "../assets/images/arrowOff.svg";
+import arrowOn from "../assets/images/arrowOn.svg";
+import {useTheme} from "@mui/material/styles";
 
-
-const Home = ({isDarkMode}) => {
-
+const Home = () => {
+  const theme = useTheme();
   const {classes} = useStyles();
 
   const onButtonclick = () =>{
@@ -30,17 +31,17 @@ const Home = ({isDarkMode}) => {
   return (
     <>
       <div className={classes.home}>
-        <img src={isDarkMode? lampOff : lampOn} className={classes.lamp} alt="lamp" />
+        <img src={theme.palette.mode === "light"? lampOn : lampOff} className={classes.lamp} alt="lamp" />
         <Grid container className={classes.heroSection}>
           <Grid item xs={12} md={12} className={classes.heroTxt}>
-            <Typography variant="h5">
+            <Typography variant="h5" color={theme.palette.text.primary}>
               Hello! I'm
               <br />
               Niloofar Kiani
             </Typography>
           </Grid>
           <Grid item xs={12} md={12}>
-            <Typography className={classes.heroTxtSub}>
+            <Typography className={classes.heroTxtSub} color={theme.palette.text.secondary}>
               I'm a front-end developer and UI/UX designer,
               <br />
               based in Armenia with a passion for graphic design.
@@ -52,11 +53,11 @@ const Home = ({isDarkMode}) => {
           </Grid>
           <ListItemButton onClick={onButtonclick} className={classes.resume}>
               Download my resume
-            <img src={arrow} className={classes.arrow} alt="arrow icon"/>
+            <img src={theme.palette.mode === "light"? arrowOn : arrowOff} className={classes.arrow} alt="arrow icon"/>
           </ListItemButton>
         </Grid>
         <div className={classes.girlDiv}>
-          <img src={isDarkMode? girlOff : girlOn} className={classes.girl} alt="girl" />
+          <img src={theme.palette.mode === "light"? girlOn : girlOff} className={classes.girl} alt="girl" />
         </div>
       </div>
     </>

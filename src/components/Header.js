@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 //Material UI
 import {styled, useTheme} from "@mui/material/styles";
@@ -28,6 +29,9 @@ import {
 import useStyles from "../assets/styles/styles";
 import behance from "../assets/images/behance.png";
 import menu from "../assets/images/menu.svg";
+
+import {toggleActionTheme} from "../redux/actions/themeAction";
+// import { themeColors } from "../assets/styles/theme";
 
 const drawerWidth = 240;
 
@@ -76,9 +80,10 @@ const DrawerHeader = styled("div")(({theme}) => ({
   justifyContent: "flex-start",
 }));
 
-export default function Header({handleThemeChange, isDarkMode}) {
+export default function Header() {
   const {classes} = useStyles();
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
@@ -95,8 +100,8 @@ export default function Header({handleThemeChange, isDarkMode}) {
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={handleThemeChange}>
-            {isDarkMode? <LightMode className={classes.themeIcons} /> : <DarkMode className={classes.themeIcons} /> }
+          <IconButton onClick={()=> dispatch(toggleActionTheme())}>
+            {theme.palette.mode === "light"? <LightMode className={classes.themeIcons} /> : <DarkMode className={classes.themeIcons} /> }
           </IconButton>
           <IconButton
             className={`${classes.iconBtn} ${classes.menuIconBtn}`}

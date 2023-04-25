@@ -37,4 +37,7 @@ module.exports = {
     ],
   },
   devtool: 'source-map', 
+  optimization: {
+    concatenateModules: true,
+  },
 };

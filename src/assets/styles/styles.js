@@ -3,16 +3,16 @@ import {makeStyles} from "tss-react/mui";
 const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
-      backgroundColor: "#111",
-      height: "85vh",
+     // backgroundColor: theme.palette.background.default,
+      height: "80vh",
       fontFamily: "hind",
-      margin: 50,
-      borderRadius: 12,
+      margin: 70,
       color: "#fff",
       "@media (max-width: 1170px)": {
         height: "100vh",
         margin: 0,
         borderRadius: 0,
+        background: theme.palette.background.paper,
       },
     },
     toolbar: {
@@ -22,21 +22,25 @@ const useStyles = makeStyles()((theme) => {
       },
     },
     portAppBar: {
-      backgroundColor: "transparent",
+      background: "none",
       alignItems: "flex-end",
       boxShadow: "none",
     },
     iconBtn: {
       color: "#111",
-      backgroundColor: "#d3f513",
+      backgroundColor: theme.palette.primary.dark,
       width: 30,
       height: 30,
       margin: 3,
     },
     menuIconBtn: {
+      backgroundColor: theme.palette.primary.dark,
+      "&:hover": {
+        backgroundColor: theme.palette.grey[50],
+      },
       "@media (max-width: 1170px)": {
         "&:hover": {
-          backgroundColor: "#9c9c9c",
+          backgroundColor: theme.palette.grey[50],
         },
       },
     },
@@ -46,18 +50,27 @@ const useStyles = makeStyles()((theme) => {
     },
 
     home: {
+      backgroundColor: theme.palette.background.paper,
       position: "relative",
       height: "100%",
       marginTop: -120,
+      borderRadius: 12,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      "@media (max-width: 730px)": {
+        marginTop: -104,
+        borderRadius: 0,
+      },
+      "@media (max-width: 1170px)": {
+        borderRadius: 0,
+      },
     },
     lamp: {
       width: 100,
-      marginTop: 10,
+      //marginTop: 10,
       "@media (max-width: 1170px)": {
-        marginTop: 75,
+        //marginTop: 75,
         width: 80,
       },
     },
@@ -79,7 +92,6 @@ const useStyles = makeStyles()((theme) => {
         marginLeft: 20,
         marginRight: 20,
       },
-      color: "#9c9c9c",
       position: "relative",
       marginTop: 20,
       marginLeft: 70,
@@ -92,9 +104,10 @@ const useStyles = makeStyles()((theme) => {
     resume: {
       textDecoration: "none",
       fontSize: 11,
-      color: "#d3f513",
+      color: theme.palette.text.primary,
       marginTop: 10,
       marginLeft: 50,
+      fontWeight: 500,
       "@media (max-width: 1170px)": {
         marginLeft: 0,
       },
@@ -105,6 +118,7 @@ const useStyles = makeStyles()((theme) => {
       top: 10,
       height: "26px",
       width: "20px",
+      color: theme.palette.text.primary,
       transform: "rotate(95deg)",
       "@media (max-width: 1170px)": {
         height: "19px",
@@ -126,15 +140,15 @@ const useStyles = makeStyles()((theme) => {
     themeIcons: {
       margin: theme.spacing(1),
       "@media (min-width: 1170px)": {
-        color: theme.palette.primary.main,
+        color: theme.palette.primary.light,
       },
       "@media (max-width: 1170px)": {
-        color: theme.palette.secondary.main,
+        color: theme.palette.primary.light,
       },
     },
     listItem: {
       textDecoration: "none",
-      color: theme.palette.primary.main,
+      color: theme.palette.text.primary,
       fontSize: "18px",
     },
     drawerItems: {
@@ -154,7 +168,28 @@ const useStyles = makeStyles()((theme) => {
       textDecoration: "none",
       color: "inherit",
     },
+    formWrapper: {
+      height:"100%",
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding:"20px",
+      paddingTop: "30px",
+      "@media (max-width: 1170px) && (min-width: 600px)": {
+        margin: "0 auto",
+        width: "100%",
+        height: "100vh",
+        background: theme.palette.background.paper,
+        
+      },
+      "@media (max-width: 1170px)":{
+        paddingTop: "70px"
+      }
+    },
     formContainer: {
+      width: "100%",
+      color: theme.palette.text.primary,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -163,29 +198,65 @@ const useStyles = makeStyles()((theme) => {
     inputContainer: {
       display: "flex",
       alignItems: "center",
+      flexWrap: "wrap",
       justifyContent: "center",
-      margin: 40,
+      margin: 20,
       "& #standard-basic-label": {
-        color: "white",
+        color: theme.palette.text.primary,
+      },
+      "& #standard-basic": {
+        color: theme.palette.text.primary,
+        width: "280px",
       },
     },
+    inputWraper: {
+      height: 70,
+    },
     inputField: {
-      color: "white",
-      width: 220,
+      maxWidth: 220,
       marginRight: 30,
-      borderBottom: "1px solid #f1f1f1",
+      borderBottom: "0.5px solid",
       "&:focus": {
-        borderBottom: "2px solid white",
+        borderBottom: "1px solid",
       },
     },
     textArea: {
-      width: 480,
+      width: "500px",
       minHeight: 200,
-      margin: 40,
+      margin: 10,
       padding: 20,
+      fontFamily: "inherit",
+      fontSize: 14,
+      borderRadius: 4,
+      "&:focus :focus-visible": {
+        borderColor: "yellow",
+      },
+      "@media (max-width: 600px)": {
+        width: "280px",
+      },
     },
     subTxt: {
       color: "red",
+      fontSize: 12,
+    },
+    headTxt: {
+      color: theme.palette.text.primary,
+      marginBottom: "10px",
+      padding: "4px",
+    },
+    headerTxt: {
+      borderBottom: "1px solid",
+      borderBottomColor: theme.palette.primary.dark,
+      width: "145px",
+    },
+    iconContact: {
+      border:"1px solid",
+      borderColor: theme.palette.primary.dark,
+      borderRadius: "50%",
+      width: 30,
+      height: 30,
+      padding:4,
+      fill: theme.palette.text.primary,
     },
   };
 });

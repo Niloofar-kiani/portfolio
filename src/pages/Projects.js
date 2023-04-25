@@ -1,7 +1,8 @@
 import React from "react";
-
+import useStyles from "../assets/styles/styles";
 const Projects = () => {
-  return <div>projects</div>;
+  const {classes} = useStyles();
+  return <div className={classes.home}>projects</div>;
 };
 
 export default Projects;

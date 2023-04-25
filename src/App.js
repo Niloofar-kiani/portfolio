@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useMemo} from "react";
+import {useSelector} from 'react-redux';
 import {Routes, Route, Outlet} from "react-router-dom";
 
 //component imports
@@ -10,24 +11,27 @@ import Contact from "./pages/Contact";
 
 //assets
 import useStyles from "./assets/styles/styles";
-import {ThemeProvider} from "@mui/material/styles";
-import {lightTheme, darkTheme} from "./assets/styles/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import {themeColors} from "./assets/styles/theme";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const {mode} = useSelector(state => state.mode)
+  const theme = useMemo(()=>createTheme(themeColors(mode)),[mode])
+  // const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const handleThemeChange = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  // const handleThemeChange = () => {
+  //   setIsDarkMode(!isDarkMode);
+  // };
 
   const {classes} = useStyles();
   return (
-    <ThemeProvider theme= {isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme}>
       <div className={classes.divMain}>
-        <Header  handleThemeChange={handleThemeChange} isDarkMode={isDarkMode} />
+        <Header/>
         <Routes>
           <Route path="/" element={<Outlet />}>
-            <Route path="/" element={<Home isDarkMode={isDarkMode}/>} />
+            <Route path="/" element={<Home/>} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/contact" element={<Contact />} />
