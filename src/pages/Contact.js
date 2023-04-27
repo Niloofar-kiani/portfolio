@@ -11,8 +11,12 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import {Link} from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import {useTheme} from "@mui/material/styles";
+import girlOff from "../assets/images/contact-bg-off.png";
+import girlOn from "../assets/images/contact-bg-on.png";
 
 const Contact = () => {
+  const theme = useTheme();
   const [values, handleChange, resetForm] = useForm();
   const [formErrors, setFormErrors] = useState({});
   const [isSubmited, setIsSubmited] = useState(false);
@@ -145,6 +149,9 @@ const Contact = () => {
           Submit
         </Button>
       </form>
+      <div className={`${classes.girlDiv} ${classes.otherGirls}`}>
+          <img src={theme.palette.mode === "light"? girlOn : girlOff} className={classes.girl} alt="girl" />
+      </div>
     </div>
   );
 };

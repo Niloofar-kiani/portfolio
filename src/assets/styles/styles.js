@@ -247,7 +247,8 @@ const useStyles = makeStyles()((theme) => {
     headerTxt: {
       borderBottom: "1px solid",
       borderBottomColor: theme.palette.primary.dark,
-      width: "145px",
+      width: "fit-content",
+      textTransform: "upperCase"
     },
     iconContact: {
       border:"1px solid",
@@ -260,7 +261,53 @@ const useStyles = makeStyles()((theme) => {
     },
     skillsHead:{
       color: theme.palette.text.primary,
+    },
+    skillsGroup:{
+      paddingLeft:"10px",
+      marginBottom:"10px",
+      position:"relative",
+      "&:before" : {
+        content:`""`,
+        position:"absolute",
+        top:10,
+        left:-15,
+        height:"calc(100% - 33px)",
+        width:"1px",
+        backgroundColor: theme.palette.primary.dark,
+      },
+    },
+    skillsTitle:{
+      position:"relative",
+      padding:"0px",
+      "&:before" : {
+        content:`""`,
+        position:"absolute",
+        top:10,
+        left:-35,
+        height:"20px",
+        width:"20px",
+        borderRadius:"50%",
+        backgroundColor: theme.palette.primary.dark,
+      },
+    },
+    skillItem :{
+      position:"relative",
+      "&:before" : {
+        content:`""`,
+        position:"absolute",
+        top:20,
+        left:-29,
+        height:"1px",
+        width:"29px",
+        backgroundColor: theme.palette.primary.dark,
+      },
+    },
+    otherGirls :{
+      "@media (max-width: 900px)": {
+        display: "none",
+      },
     }
+
   };
 });
 
