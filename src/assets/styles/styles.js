@@ -258,6 +258,9 @@ const useStyles = makeStyles()((theme) => {
       padding:4,
       fill: theme.palette.text.primary,
     },
+    skillsHead:{
+      color: theme.palette.text.primary,
+    }
   };
 });
 

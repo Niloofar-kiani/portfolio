@@ -18,11 +18,6 @@ import {themeColors} from "./assets/styles/theme";
 const App = () => {
   const {mode} = useSelector(state => state.mode)
   const theme = useMemo(()=>createTheme(themeColors(mode)),[mode])
-  // const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // const handleThemeChange = () => {
-  //   setIsDarkMode(!isDarkMode);
-  // };
 
   const {classes} = useStyles();
   return (
