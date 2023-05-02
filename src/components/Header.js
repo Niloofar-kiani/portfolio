@@ -144,7 +144,7 @@ export default function Header() {
                 </Link>
               </ListItemButton>
             </ListItem>
-            {["Skills", "Projects", "Contact"].map((text, index) => (
+            {["Skills", "Projects", "Contact", "Weather"].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
                   <Link to={text.toLocaleLowerCase()} className={classes.listItem}>

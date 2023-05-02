@@ -3,7 +3,6 @@ import {makeStyles} from "tss-react/mui";
 const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
-     // backgroundColor: theme.palette.background.default,
       height: "80vh",
       fontFamily: "hind",
       margin: 70,
