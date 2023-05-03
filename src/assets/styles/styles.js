@@ -1,5 +1,6 @@
 import {makeStyles} from "tss-react/mui";
 
+
 const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
@@ -168,23 +169,22 @@ const useStyles = makeStyles()((theme) => {
       color: "inherit",
     },
     formWrapper: {
-      height:"100%",
+      height: "100%",
       width: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding:"20px",
+      padding: "20px",
       paddingTop: "30px",
       "@media (max-width: 1170px) && (min-width: 600px)": {
         margin: "0 auto",
         width: "100%",
         height: "100vh",
         background: theme.palette.background.paper,
-        
       },
-      "@media (max-width: 1170px)":{
-        paddingTop: "70px"
-      }
+      "@media (max-width: 1170px)": {
+        paddingTop: "70px",
+      },
     },
     formContainer: {
       width: "100%",
@@ -247,66 +247,122 @@ const useStyles = makeStyles()((theme) => {
       borderBottom: "1px solid",
       borderBottomColor: theme.palette.primary.dark,
       width: "fit-content",
-      textTransform: "upperCase"
+      textTransform: "upperCase",
     },
     iconContact: {
-      border:"1px solid",
+      border: "1px solid",
       borderColor: theme.palette.primary.dark,
       borderRadius: "50%",
       width: 30,
       height: 30,
-      padding:4,
+      padding: 4,
       fill: theme.palette.text.primary,
     },
-    skillsHead:{
+    skillsHead: {
       color: theme.palette.text.primary,
     },
-    skillsGroup:{
-      paddingLeft:"10px",
-      marginBottom:"10px",
-      position:"relative",
-      "&:before" : {
-        content:`""`,
-        position:"absolute",
-        top:10,
-        left:-15,
-        height:"calc(100% - 33px)",
-        width:"1px",
+    skillsGroup: {
+      paddingLeft: "10px",
+      marginBottom: "10px",
+      position: "relative",
+      "&:before": {
+        content: `""`,
+        position: "absolute",
+        top: 10,
+        left: -15,
+        height: "calc(100% - 33px)",
+        width: "1px",
         backgroundColor: theme.palette.primary.dark,
       },
     },
-    skillsTitle:{
-      position:"relative",
-      padding:"0px",
-      "&:before" : {
-        content:`""`,
-        position:"absolute",
-        top:10,
-        left:-35,
-        height:"20px",
-        width:"20px",
-        borderRadius:"50%",
+    skillsTitle: {
+      position: "relative",
+      padding: "0px",
+      "&:before": {
+        content: `""`,
+        position: "absolute",
+        top: 10,
+        left: -35,
+        height: "20px",
+        width: "20px",
+        borderRadius: "50%",
         backgroundColor: theme.palette.primary.dark,
       },
     },
-    skillItem :{
-      position:"relative",
-      "&:before" : {
-        content:`""`,
-        position:"absolute",
-        top:20,
-        left:-29,
-        height:"1px",
-        width:"29px",
+    skillItem: {
+      position: "relative",
+      "&:before": {
+        content: `""`,
+        position: "absolute",
+        top: 20,
+        left: -29,
+        height: "1px",
+        width: "29px",
         backgroundColor: theme.palette.primary.dark,
       },
     },
-    otherGirls :{
+    otherGirls: {
       "@media (max-width: 900px)": {
         display: "none",
       },
-    }
-
+    },
+    weatherContainer: {
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      color: "#111",
+    },
+    weather: {
+      marginTop: 100,
+    },
+    weatherWrapper: {
+      width: 420,
+      backdropFilter: "blur(10px)",
+      marginTop: 50,
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      borderRadius: 10,
+      "@media (max-width: 600px)": {
+        width: 300,
+      },
+    },
+    searchInput: {
+      outline: "none",
+      border: "1px solid",
+      borderColor: theme.palette.primary.dark,
+      borderRadius: "4px",
+      width: 420,
+      padding: 8,
+      fontSize: 18,
+      "@media (max-width: 600px)": {
+        width: 220,
+      },
+    },
+    top: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    temp: {
+      fontSize: 120,
+      margin: 0,
+      fontWeight: 100,
+    },
+    condition: {
+      fontSize: 18,
+    },
+    bottom: {
+      display: "flex",
+      justifyContent: "space-around",
+    },
+    feels: {
+      display: "flex",
+      gap: 10,
+      alignItems: "center",
+    },
+    humidity: {
+      display: "flex",
+      gap: 10,
+      alignItems: "center",
+    },
   };
 });
 

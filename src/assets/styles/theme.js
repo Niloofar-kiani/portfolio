@@ -1,4 +1,3 @@
-//import { createTheme } from "@mui/material/styles";
 import {amber, grey} from '@mui/material/colors';
 //grey :"#9c9c9c"
 //green :"#d3f513"
@@ -73,47 +72,4 @@ export const themeColors = (mode) => ({
 });
 
 
-
-
-
-
-
-
-
-
-
-
-// const lightTheme = createTheme({
-//   palette: {
-//     mode: "light",
-//     primary: {
-//       main: "#111",
-//     },
-//     secondary: {
-//       main: "#dcd7d7",
-//     },
-//     background: {
-//       default: "#111",
-//       paper: "white",
-//     },
-//   },
-// });
-
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: "dark",
-//     primary: {
-//       main: "#fff",
-//     },
-//     secondary: {
-//       main: "#fff",
-//     },
-//     background: {
-//       default: "#9c9c9c",
-//       paper: "black",
-//     },
-//   },
-// });
-
-// export { lightTheme, darkTheme };
 
