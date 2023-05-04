@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Grid, Alert} from "@mui/material";
+import {Grid, Alert, Snackbar} from "@mui/material";
 import useStyles from "../assets/styles/styles";
 import Profile from "../components/Profile";
 import Loading from "../components/Loading";
@@ -55,7 +55,7 @@ const Repositories = () => {
             >
               {!userExists && (
                 <Alert variant="outlined" severity="error">
-                  There is no such repository name
+                  There is no such username
                 </Alert>
               )}
               {userExists &&
