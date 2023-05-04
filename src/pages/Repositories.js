@@ -42,7 +42,7 @@ const Repositories = () => {
             value={user}
             onChange={(e) => setUser(e.target.value)}
             onKeyDown={handleSearch}
-            placeholder="Enter a Repository name"
+            placeholder="Enter a username"
             type="text"
             style={{marginBottom: "30px"}}
           />
