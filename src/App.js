@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import {useSelector} from 'react-redux';
+import {useSelector} from "react-redux";
 import {Routes, Route, Outlet} from "react-router-dom";
 
 //component imports
@@ -9,29 +9,31 @@ import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import Weather from "./pages/Weather";
+import Repositories from "./pages/Repositories";
 
 //assets
 import useStyles from "./assets/styles/styles";
-import { ThemeProvider } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
+import {ThemeProvider} from "@mui/material/styles";
+import {createTheme} from "@mui/material/styles";
 import {themeColors} from "./assets/styles/theme";
 
 const App = () => {
-  const {mode} = useSelector(state => state.mode)
-  const theme = useMemo(()=>createTheme(themeColors(mode)),[mode])
+  const {mode} = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeColors(mode)), [mode]);
 
   const {classes} = useStyles();
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.divMain}>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/" element={<Outlet />}>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/weather" element={<Weather />} />
+            <Route path="/repositories" element={<Repositories />} />
           </Route>
         </Routes>
       </div>

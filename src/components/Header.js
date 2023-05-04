@@ -1,6 +1,6 @@
-import React,{useState} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 
 //Material UI
 import {styled, useTheme} from "@mui/material/styles";
@@ -100,8 +100,12 @@ export default function Header() {
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={()=> dispatch(toggleActionTheme())}>
-            {theme.palette.mode === "light"? <LightMode className={classes.themeIcons} /> : <DarkMode className={classes.themeIcons} /> }
+          <IconButton onClick={() => dispatch(toggleActionTheme())}>
+            {theme.palette.mode === "light" ? (
+              <LightMode className={classes.themeIcons} />
+            ) : (
+              <DarkMode className={classes.themeIcons} />
+            )}
           </IconButton>
           <IconButton
             className={`${classes.iconBtn} ${classes.menuIconBtn}`}
@@ -111,7 +115,7 @@ export default function Header() {
             onClick={handleDrawerOpen}
             sx={{...(open && {display: "none"})}}
           >
-            <img src={menu} className={classes.menuIcon} alt="menu icon"/>
+            <img src={menu} className={classes.menuIcon} alt="menu icon" />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -144,15 +148,20 @@ export default function Header() {
                 </Link>
               </ListItemButton>
             </ListItem>
-            {["Skills", "Projects", "Contact", "Weather"].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <Link to={text.toLocaleLowerCase()} className={classes.listItem}>
-                    {text}
-                  </Link>
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {["Skills", "Projects", "Contact", "Weather", "Repositories"].map(
+              (text, index) => (
+                <ListItem key={text} disablePadding>
+                  <ListItemButton>
+                    <Link
+                      to={text.toLocaleLowerCase()}
+                      className={classes.listItem}
+                    >
+                      {text}
+                    </Link>
+                  </ListItemButton>
+                </ListItem>
+              ),
+            )}
           </List>
           <Box className={classes.drawerHeader}>
             <Typography variant="h6">Connect:</Typography>

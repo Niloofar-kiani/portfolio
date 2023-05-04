@@ -1,6 +1,5 @@
 import {makeStyles} from "tss-react/mui";
 
-
 const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
@@ -362,6 +361,13 @@ const useStyles = makeStyles()((theme) => {
       display: "flex",
       gap: 10,
       alignItems: "center",
+    },
+    profiles: {
+      marginTop: 30,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      margin: "30px 0",
     },
   };
 });
