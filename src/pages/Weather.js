@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import useStyles from "../assets/styles/styles";
 
-
 import {useTheme} from "@mui/material/styles";
 
 const Weather = () => {
@@ -12,8 +11,7 @@ const Weather = () => {
   const [location, setLocation] = useState("");
   const [image, setImage] = useState([]);
 
-
-  const weather_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=d076711b51ce056a91498f8d2ae9c367`;
+  const weather_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
   const image_url = "https://api.pexels.com/v1/search?query=";
 
   const handleSearch = async (event) => {
@@ -34,12 +32,12 @@ const Weather = () => {
     try {
       const response = await fetch(`${image_url}${value}`, {
         headers: {
-          Authorization:
-            "ZVrawsqNKRdcpwR4ySwJPvtormrNyoFn18FukClayWtY8EH3Ift8H48E",
+          Authorization: `${process.env.REACT_APP_PEXEL_KEY}`,
         },
       });
       const res = await response.json();
-      const imageSrc = res?.photos?.[ Math.floor(Math.random() * 10)]?.src?.landscape || "";
+      const imageSrc =
+        res?.photos?.[Math.floor(Math.random() * 10)]?.src?.landscape || "";
       setImage(imageSrc);
     } catch (error) {
       console.error("Error fetching image", error);
@@ -69,8 +67,8 @@ const Weather = () => {
           {data.main ? (
             <h2 className={classes.temp}>{data.main.temp.toFixed()}°C </h2>
           ) : null}
-          {data.main ? (      
-              <p className={classes.condition}>{data.weather[0].description}</p>
+          {data.main ? (
+            <p className={classes.condition}>{data.weather[0].description}</p>
           ) : null}
         </div>
         {data.name !== undefined && (
