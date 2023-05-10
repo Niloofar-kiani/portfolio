@@ -4,6 +4,7 @@ const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
       height: "80vh",
+      fontFamily: "hind",
       margin: 70,
       color: "#fff",
       "@media (max-width: 1170px)": {
@@ -367,6 +368,9 @@ const useStyles = makeStyles()((theme) => {
       flexDirection: "column",
       alignItems: "center",
       margin: "30px 0",
+      "@media (max-width: 1170px)": {
+        marginTop: "100px",
+      },
     },
   };
 });

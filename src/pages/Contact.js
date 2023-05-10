@@ -1,7 +1,12 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect} from "react";
 import useForm from "../utils/useForm";
 import useStyles from "../assets/styles/styles";
-import {Button, TextField, Typography, Grid} from "@mui/material";
+import {
+  Button,
+  TextField,
+  Typography,
+  Grid,
+} from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import {Link} from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -16,6 +21,7 @@ const Contact = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmited, setIsSubmited] = useState(false);
 
+
   const {classes} = useStyles();
 
   const handleSubmit = (e) => {
@@ -23,9 +29,9 @@ const Contact = () => {
     console.log(values);
     setFormErrors(validate(values));
     setIsSubmited(true);
-    resetForm();
+    resetForm()
   };
-
+  
   useEffect(() => {
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmited) {
@@ -33,7 +39,7 @@ const Contact = () => {
     }
   }, [formErrors, isSubmited]);
 
-  const memoizedFormErrors = useMemo(() => formErrors, [formErrors]);
+
 
   const validate = (values) => {
     const errors = {};
@@ -112,7 +118,7 @@ const Contact = () => {
               required
             />
             <Typography className={classes.subTxt}>
-              {memoizedFormErrors.name}
+              {formErrors.name}
             </Typography>
           </div>
           <div className={classes.inputWraper}>
@@ -128,7 +134,7 @@ const Contact = () => {
               required
             />
             <Typography className={classes.subTxt}>
-              {memoizedFormErrors.email}
+              {formErrors.email}
             </Typography>
           </div>
         </div>
@@ -139,16 +145,12 @@ const Contact = () => {
           aria-label="textarea"
           className={classes.textArea}
         />
-        <Button variant="contained" type="submit" value="submit">
+        <Button variant="contained" type="submit" >
           Submit
         </Button>
       </form>
       <div className={`${classes.girlDiv} ${classes.otherGirls}`}>
-        <img
-          src={theme.palette.mode === "light" ? girlOn : girlOff}
-          className={classes.girl}
-          alt="girl"
-        />
+          <img src={theme.palette.mode === "light"? girlOn : girlOff} className={classes.girl} alt="girl" />
       </div>
     </div>
   );

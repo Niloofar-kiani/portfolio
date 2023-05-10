@@ -1,46 +1,53 @@
-import React, {useState} from "react";
-import {Grid, Alert, Snackbar} from "@mui/material";
+import React from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {
+  setRepos,
+  setUserExists,
+  setLoading,
+  setError,
+  setUser,
+} from "../redux/reducers/reposSlice";
+import {Grid, Alert} from "@mui/material";
 import useStyles from "../assets/styles/styles";
 import Profile from "../components/Profile";
 import Loading from "../components/Loading";
 
 const Repositories = () => {
   const {classes} = useStyles();
-  const [repos, setRepos] = useState([]);
-  const [user, setUser] = useState("");
-  const [userExists, setUserExists] = useState(true);
+  const dispatch = useDispatch();
+  const {repos, user, userExists, loading, error} = useSelector(
+    (state) => state.repos,
+  );
 
   const url = `https://api.github.com/users/${user}/repos?page=1&per_page=6&sort=updated`;
 
   const handleSearch = async (event) => {
     if (event.key === "Enter") {
       try {
+        dispatch(setLoading(true));
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
-          setRepos(data);
-          setUserExists(true);
+          dispatch(setRepos(data));
         } else {
-          setUserExists(false);
+          dispatch(setUserExists(false));
         }
       } catch (error) {
-        setUserExists(false);
-        console.error("Error fetching repository:", error);
+        dispatch(setError(error.message));
       }
-      setUser("");
+      dispatch(setUser(""));
     }
   };
-
   return (
     <div className={classes.home}>
-      {!repos ? (
+      {loading ? (
         <Loading />
       ) : (
         <div className={classes.profiles}>
           <input
             className={classes.searchInput}
             value={user}
-            onChange={(e) => setUser(e.target.value)}
+            onChange={(e) => dispatch(setUser(e.target.value))}
             onKeyDown={handleSearch}
             placeholder="Enter a username"
             type="text"

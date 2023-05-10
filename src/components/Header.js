@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 //Material UI
 import {styled, useTheme} from "@mui/material/styles";
@@ -29,9 +29,7 @@ import {
 import useStyles from "../assets/styles/styles";
 import behance from "../assets/images/behance.png";
 import menu from "../assets/images/menu.svg";
-
-import {toggleActionTheme} from "../redux/actions/themeAction";
-// import { themeColors } from "../assets/styles/theme";
+import {toggleThemeMode} from "../redux/reducers/modeSlice";
 
 const drawerWidth = 240;
 
@@ -84,6 +82,7 @@ export default function Header() {
   const {classes} = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch();
+  const mode = useSelector((state) => state.mode);
 
   const [open, setOpen] = useState(false);
 
@@ -100,10 +99,7 @@ export default function Header() {
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            onClick={() => dispatch(toggleActionTheme())}
-            aria-label="theme icon"
-          >
+          <IconButton onClick={() => dispatch(toggleThemeMode())}>
             {theme.palette.mode === "light" ? (
               <LightMode className={classes.themeIcons} />
             ) : (
@@ -138,7 +134,7 @@ export default function Header() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} aria-label="direction icon">
+          <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
@@ -179,7 +175,6 @@ export default function Header() {
               href="https://www.behance.net/niloofarkiani"
               color="inherit"
               className={classes.iconBtn}
-              aria-label="behance icon"
             >
               <img
                 src={behance}
@@ -187,19 +182,13 @@ export default function Header() {
                 className={classes.behanceIcon}
               />
             </IconButton>
-            <IconButton
-              className={classes.iconBtn}
-              href="#"
-              color="inherit"
-              aria-label="twitter icon"
-            >
+            <IconButton className={classes.iconBtn} href="#" color="inherit">
               <Twitter />
             </IconButton>
             <IconButton
               className={classes.iconBtn}
               href="https://www.linkedin.com/in/niloofar-kiani/"
               color="inherit"
-              aria-label="linkedIn icon"
             >
               <LinkedIn />
             </IconButton>

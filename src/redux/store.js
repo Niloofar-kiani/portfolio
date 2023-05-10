@@ -1,19 +1,12 @@
-import { createStore, combineReducers,applyMiddleware} from 'redux';
-import {modeReducer} from "./reducers/themeModeReducer";
-import { composeWithDevTools } from '@redux-devtools/extension';
-import thunk from 'redux-thunk';
-const reducer = combineReducers({
-  mode: modeReducer
-})
+import {configureStore} from "@reduxjs/toolkit";
+import {reposSlice} from "./reducers/reposSlice";
+import modeReducer from "./reducers/modeSlice";
+import weatherReducer from "./reducers/weatherReducer";
 
-
-let initialState = {
-  mode:{
-    mode: "light"
-  }
-}
-const middleware = [thunk];
-const store = createStore(reducer, initialState,  composeWithDevTools(
-  applyMiddleware(...middleware)
-))
-export default store;
+export default configureStore({
+  reducer: {
+    repos: reposSlice.reducer,
+    mode: modeReducer,
+    weather: weatherReducer,
+  },
+});

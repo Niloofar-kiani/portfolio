@@ -1,4 +1,5 @@
 import React from "react";
+// import {Link} from "react-router-dom";
 
 //Material UI
 import {Typography, Grid, ListItemButton} from "@mui/material";
@@ -17,26 +18,20 @@ const Home = () => {
   const theme = useTheme();
   const {classes} = useStyles();
 
-  const onButtonclick = () => {
-    fetch("resume.pdf").then((res) =>
-      res.blob().then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
-        let alink = document.createElement("a");
-        alink.href = fileURL;
-        alink.classList.add(`${classes.resume}`);
-        alink.download = "Niloofar-kiani.pdf";
-        alink.click();
-      }),
-    );
-  };
+  const onButtonclick = () =>{
+    fetch('resume.pdf').then(res => res.blob().then(blob =>{
+      const fileURL = window.URL.createObjectURL(blob)
+      let alink = document.createElement('a');
+      alink.href = fileURL;
+      alink.classList.add(`${classes.resume}`);
+      alink.download = 'Niloofar-kiani.pdf';
+      alink.click();
+    }))
+  }
   return (
     <>
       <div className={classes.home}>
-        <img
-          src={theme.palette.mode === "light" ? lampOn : lampOff}
-          className={classes.lamp}
-          alt="lamp"
-        />
+        <img src={theme.palette.mode === "light"? lampOn : lampOff} className={classes.lamp} alt="lamp" />
         <Grid container className={classes.heroSection}>
           <Grid item xs={12} md={12} className={classes.heroTxt}>
             <Typography variant="h5" color={theme.palette.text.primary}>
@@ -46,10 +41,7 @@ const Home = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={12}>
-            <Typography
-              className={classes.heroTxtSub}
-              color={theme.palette.text.secondary}
-            >
+            <Typography className={classes.heroTxtSub} color={theme.palette.text.secondary}>
               I'm a front-end developer and UI/UX designer,
               <br />
               based in Armenia with a passion for graphic design.
@@ -60,20 +52,12 @@ const Home = () => {
             </Typography>
           </Grid>
           <ListItemButton onClick={onButtonclick} className={classes.resume}>
-            Download my resume
-            <img
-              src={theme.palette.mode === "light" ? arrowOn : arrowOff}
-              className={classes.arrow}
-              alt="arrow icon"
-            />
+              Download my resume
+            <img src={theme.palette.mode === "light"? arrowOn : arrowOff} className={classes.arrow} alt="arrow icon"/>
           </ListItemButton>
         </Grid>
         <div className={classes.girlDiv}>
-          <img
-            src={theme.palette.mode === "light" ? girlOn : girlOff}
-            className={classes.girl}
-            alt="girl"
-          />
+          <img src={theme.palette.mode === "light"? girlOn : girlOff} className={classes.girl} alt="girl" />
         </div>
       </div>
     </>
