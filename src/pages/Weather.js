@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import useStyles from "../assets/styles/styles";
 
 import {useTheme} from "@mui/material/styles";
@@ -36,6 +36,7 @@ const Weather = () => {
         },
       });
       const res = await response.json();
+
       const imageSrc =
         res?.photos?.[Math.floor(Math.random() * 10)]?.src?.landscape || "";
       setImage(imageSrc);
@@ -43,49 +44,53 @@ const Weather = () => {
       console.error("Error fetching image", error);
     }
   };
+
+  const memoizedBackground = useMemo(() => {
+    return (
+      <div
+        className={`${classes.home} ${classes.weatherContainer}`}
+        style={{backgroundImage: `url(${image})`}}
+      >
+        <div className={classes.weather}>
+          <input
+            className={classes.searchInput}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            onKeyDown={handleSearch}
+            placeholder="Enter a city name"
+            type="text"
+          />
+        </div>
+        <div className={classes.weatherWrapper}>
+          <div className={classes.top}>
+            <h2 className={classes.city}>{data.name}</h2>
+            {data.main ? (
+              <h2 className={classes.temp}>{data.main.temp.toFixed()}°C </h2>
+            ) : null}
+            {data.main ? (
+              <p className={classes.condition}>{data.weather[0].description}</p>
+            ) : null}
+          </div>
+          {data.name !== undefined && (
+            <div className={classes.bottom}>
+              <div className={classes.feels}>
+                <p>feels like: </p>
+                {data.main ? <h3>{data.main.feels_like.toFixed()}°C</h3> : null}
+              </div>
+              <div className={classes.humidity}>
+                <p>humidity:</p>
+                {data.main ? <h3>{data.main.humidity.toFixed()}%</h3> : null}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }, [data, location, image]);
   useEffect(() => {
     handleBackground("Yerevan");
   }, []);
-  return (
-    <div
-      className={`${classes.home} ${classes.weatherContainer}`}
-      style={{backgroundImage: `url(${image})`}}
-    >
-      <div className={classes.weather}>
-        <input
-          className={classes.searchInput}
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          onKeyDown={handleSearch}
-          placeholder="Enter a city name"
-          type="text"
-        />
-      </div>
-      <div className={classes.weatherWrapper}>
-        <div className={classes.top}>
-          <h2 className={classes.city}>{data.name}</h2>
-          {data.main ? (
-            <h2 className={classes.temp}>{data.main.temp.toFixed()}°C </h2>
-          ) : null}
-          {data.main ? (
-            <p className={classes.condition}>{data.weather[0].description}</p>
-          ) : null}
-        </div>
-        {data.name !== undefined && (
-          <div className={classes.bottom}>
-            <div className={classes.feels}>
-              <p>feels like: </p>
-              {data.main ? <h3>{data.main.feels_like.toFixed()}°C</h3> : null}
-            </div>
-            <div className={classes.humidity}>
-              <p>humidity:</p>
-              {data.main ? <h3>{data.main.humidity.toFixed()}%</h3> : null}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  return memoizedBackground;
 };
 
 export default Weather;

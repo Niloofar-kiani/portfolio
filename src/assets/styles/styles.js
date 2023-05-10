@@ -4,7 +4,6 @@ const useStyles = makeStyles()((theme) => {
   return {
     divMain: {
       height: "80vh",
-      fontFamily: "hind",
       margin: 70,
       color: "#fff",
       "@media (max-width: 1170px)": {

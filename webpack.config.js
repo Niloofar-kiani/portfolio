@@ -42,4 +42,21 @@ module.exports = {
   optimization: {
     concatenateModules: true,
   },
+  devServer: {
+    port: 3001,
+    historyApiFallback: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        secure: true,
+        changeOrigin: true,
+      },
+    },
+    headers: {
+      "X-Ratelimit-Limit": " 20000",
+      "X-Ratelimit-Remaining": "19684",
+      "X-Ratelimit-Reset": "1590529646",
+      "Set-Cookie": "widget_session=abc123; SameSite=None; Secure",
+    },
+  },
 };
