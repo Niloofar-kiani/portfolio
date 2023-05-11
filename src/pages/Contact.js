@@ -1,12 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import useForm from "../utils/useForm";
 import useStyles from "../assets/styles/styles";
-import {
-  Button,
-  TextField,
-  Typography,
-  Grid,
-} from "@mui/material";
+import {Button, TextField, Typography, Grid} from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import {Link} from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -21,25 +16,22 @@ const Contact = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmited, setIsSubmited] = useState(false);
 
-
   const {classes} = useStyles();
 
+  const memoizedFormErrors = useMemo(() => formErrors, [formErrors]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
+
     setFormErrors(validate(values));
     setIsSubmited(true);
-    resetForm()
+    resetForm();
   };
-  
+
   useEffect(() => {
-    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmited) {
       console.log(values);
     }
   }, [formErrors, isSubmited]);
-
-
 
   const validate = (values) => {
     const errors = {};
@@ -118,7 +110,7 @@ const Contact = () => {
               required
             />
             <Typography className={classes.subTxt}>
-              {formErrors.name}
+              {memoizedFormErrors.name}
             </Typography>
           </div>
           <div className={classes.inputWraper}>
@@ -134,7 +126,7 @@ const Contact = () => {
               required
             />
             <Typography className={classes.subTxt}>
-              {formErrors.email}
+              {memoizedFormErrors.email}
             </Typography>
           </div>
         </div>
@@ -145,12 +137,16 @@ const Contact = () => {
           aria-label="textarea"
           className={classes.textArea}
         />
-        <Button variant="contained" type="submit" >
+        <Button variant="contained" type="submit" aria-label="submit button">
           Submit
         </Button>
       </form>
       <div className={`${classes.girlDiv} ${classes.otherGirls}`}>
-          <img src={theme.palette.mode === "light"? girlOn : girlOff} className={classes.girl} alt="girl" />
+        <img
+          src={theme.palette.mode === "light" ? girlOn : girlOff}
+          className={classes.girl}
+          alt="girl"
+        />
       </div>
     </div>
   );

@@ -99,7 +99,10 @@ export default function Header() {
       <CssBaseline />
       <AppBar className={classes.portAppBar} position="fixed" open={open}>
         <Toolbar className={classes.toolbar}>
-          <IconButton onClick={() => dispatch(toggleThemeMode())}>
+          <IconButton
+            aria-label="mode button"
+            onClick={() => dispatch(toggleThemeMode())}
+          >
             {theme.palette.mode === "light" ? (
               <LightMode className={classes.themeIcons} />
             ) : (
@@ -134,7 +137,7 @@ export default function Header() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} aria-label="chevron">
             {theme.direction === "rtl" ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
@@ -175,6 +178,7 @@ export default function Header() {
               href="https://www.behance.net/niloofarkiani"
               color="inherit"
               className={classes.iconBtn}
+              aria-label="behance icon"
             >
               <img
                 src={behance}
@@ -182,10 +186,16 @@ export default function Header() {
                 className={classes.behanceIcon}
               />
             </IconButton>
-            <IconButton className={classes.iconBtn} href="#" color="inherit">
+            <IconButton
+              aria-label="twitter icon"
+              className={classes.iconBtn}
+              href="#"
+              color="inherit"
+            >
               <Twitter />
             </IconButton>
             <IconButton
+              aria-label="linkedIn icon"
               className={classes.iconBtn}
               href="https://www.linkedin.com/in/niloofar-kiani/"
               color="inherit"

@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {lazy, Suspense, useMemo} from "react";
 import {useSelector} from "react-redux";
 import {Routes, Route, Outlet} from "react-router-dom";
 
@@ -8,8 +8,9 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
-import Weather from "./pages/Weather";
+//import Weather from "./pages/Weather";
 import Repositories from "./pages/Repositories";
+const Weather = lazy(() => import("./pages/Weather"));
 
 //assets
 import useStyles from "./assets/styles/styles";
@@ -32,7 +33,14 @@ const App = () => {
             <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/weather" element={<Weather />} />
+            <Route
+              path="/weather"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Weather />
+                </Suspense>
+              }
+            />
             <Route path="/repositories" element={<Repositories />} />
           </Route>
         </Routes>
